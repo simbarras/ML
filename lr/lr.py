@@ -21,43 +21,19 @@ class Lr:
     x = None
     y = None
 
-    def randomDataset(self):
-        self.x, self.y = make_regression(n_samples=self.n_samples, n_features=self.n_features,
-                                         noise=10)  # x -> inputs  y -> outputs
-        self.y = self.y.reshape(self.y.shape[0], 1)
-        return self.x, self.y
-
-    def makeX(self, n_param):
-        if n_param <= 2:
-            return np.hstack((self.x, np.ones((self.x.shape[0], 1))))
-        else:
-            return np.hstack((self.x**(n_param-2), self.makeX(n_param - 1)))
-
-    def run(self):
+    def run(self): # return the coef and the final theta
         self.y = self.y.reshape(self.y.shape[0], 1)
 
-        #X = np.hstack((self.x, np.ones((self.x.shape[0], 1))))  # X -> arguments input [[a, 1],[b, 1]...]
-        X = self.makeX(self.n_param)  # X -> arguments input [[a, 1],[b, 1]...]
-        # X = np.hstack((self.x**2, self.x, np.ones((self.x.shape[0], 1))))
-        """for i in range(2, self.n_param):
-            for j in range(0, self.n_features):
-                x_temp = self.x[:, j]
-                x_temp = x_temp.reshape(self.x.shape[0], 1)
-                print(x_temp)
-                X_temp = np.hstack((x_temp * X,))
-                print(X_temp.T)
-
-            X = np.hstack((X_temp, np.ones((self.x.shape[0], 1))))
-            print(X)"""
+        X = self.make_X(self.n_param)  # X -> arguments input [[a, 1],[b, 1]...]
 
         theta = np.random.randn(X.shape[1], 1)  # Matrix with the arguments of the function
 
         # Learn
         theta_final, cost_history = self.gradient_descent(X, self.y, theta, self.learning_rate, self.n_iteration)
 
-        predictions = self.model(X, theta_final)
-
         if self.verbose:
+            predictions = self.model(X, theta_final)
+
             print("\nStats: Linear regression")  # Show Stats
             print("Iteration: " + str(self.n_iteration))
             print("Learning rate: " + str(self.learning_rate))
@@ -86,6 +62,7 @@ class Lr:
 
         return theta_final, coef
 
+    """ ML FUNCTION """
     def model(self, X, theta):
         return X.dot(theta)
 
@@ -108,3 +85,16 @@ class Lr:
         u = ((y - pred) ** 2).sum()
         v = ((y - y.mean()) ** 2).sum()
         return 1 - u / v
+
+    """ CONSTRUCTION FUNCTION """
+    def randomDataset(self):
+        self.x, self.y = make_regression(n_samples=self.n_samples, n_features=self.n_features,
+                                         noise=10)  # x -> inputs  y -> outputs
+        self.y = self.y.reshape(self.y.shape[0], 1)
+        return self.x, self.y
+
+    def make_X(self, n_param):
+        if n_param <= 2:
+            return np.hstack((self.x, np.ones((self.x.shape[0], 1))))
+        else:
+            return np.hstack((self.x**(n_param-1), self.makeX(n_param - 1)))

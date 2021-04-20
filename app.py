@@ -11,6 +11,4 @@ if __name__ == '__main__':
 
     lr.n_features = 2
     lr.randomDataset()
-    #lr.run()  # Run the regression
-    lr.n_param = 3
-    lr.run()
+    lr.run()  # Run the regression
