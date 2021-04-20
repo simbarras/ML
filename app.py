@@ -1,5 +1,5 @@
-from ML.lr.lr_simple import LrBase
+from ML.lr.lr_simple import LrSimple
 
 if __name__ == '__main__':
-    lr = LrBase()
+    lr = LrSimple()
     lr.run()
