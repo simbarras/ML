@@ -7,13 +7,13 @@ import matplotlib.pyplot as plt  # Graphic
 # Linear regression module
 class Lr:
     # Hyper parameters
-    learning_rate = 0.1
+    learning_rate = 0.01
     n_iteration = 100
     n_samples = 100
 
     # Configuration
     n_features = 1
-    n_param = 2
+    n_param_more = 0
 
     verbose = False
 
@@ -21,10 +21,10 @@ class Lr:
     x = None
     y = None
 
-    def run(self): # return the coef and the final theta
+    def run(self):  # return the coef and the final theta
         self.y = self.y.reshape(self.y.shape[0], 1)
 
-        X = self.make_X(self.n_param)  # X -> arguments input [[a, 1],[b, 1]...]
+        X = self.make_X(self.n_features + self.n_param_more)  # X -> arguments input [[a, 1],[b, 1]...]
 
         theta = np.random.randn(X.shape[1], 1)  # Matrix with the arguments of the function
 
@@ -39,7 +39,7 @@ class Lr:
             print("Learning rate: " + str(self.learning_rate))
             print("Samples: " + str(self.n_samples))
             print("Features: " + str(self.n_features))
-            print("Parameters: " + str(self.n_param))
+            print("More parameters: " + str(self.n_param_more))
             print("y: " + str(self.y.shape))
             print("x: " + str(self.x.shape))
             print("X: " + str(X.shape))
@@ -63,6 +63,7 @@ class Lr:
         return theta_final, coef
 
     """ ML FUNCTION """
+
     def model(self, X, theta):
         return X.dot(theta)
 
@@ -87,6 +88,7 @@ class Lr:
         return 1 - u / v
 
     """ CONSTRUCTION FUNCTION """
+
     def randomDataset(self):
         self.x, self.y = make_regression(n_samples=self.n_samples, n_features=self.n_features,
                                          noise=10)  # x -> inputs  y -> outputs
@@ -97,4 +99,4 @@ class Lr:
         if n_param <= 2:
             return np.hstack((self.x, np.ones((self.x.shape[0], 1))))
         else:
-            return np.hstack((self.x**(n_param-1), self.makeX(n_param - 1)))
+            return np.hstack((self.x ** (n_param - 1), self.make_X(n_param - 1)))
