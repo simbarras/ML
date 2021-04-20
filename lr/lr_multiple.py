@@ -12,16 +12,16 @@ class LrMultiple:
     n_iteration = 100
 
     # Configuration
-    n_features = 1
+    n_features = 2
     n_param = 2
 
     def run(self):
         x, y = make_regression(n_samples=100, n_features=self.n_features, noise=10)  # x -> inputs  y -> outputs
         y = y.reshape(y.shape[0], 1)
 
-        X = np.hstack((x, np.ones(x.shape)))  # X -> arguments input [[a, 1],[b, 1]...]
+        X = np.hstack((x, np.ones((x.shape[0], 1))))  # X -> arguments input [[a, 1],[b, 1]...]
         for i in range(2, self.n_param):
-            X = np.hstack((X * x, np.ones(x.shape)))
+            X = np.hstack((X * x, np.ones((x.shape[0], 1))))
             # print(X)
 
         theta = np.random.randn(X.shape[1], 1)  # Matrix with the arguments of the function
@@ -42,18 +42,19 @@ class LrMultiple:
         print("Theta: " + str(theta.shape))
         print("Theta final: " + str(theta_final))
 
-        # Show graph
-        plt.scatter(x, y)
-        plt.plot(x, predictions, c='r')
-        plt.show()
+        # Show coef /1
+        coef = self.coef_determination(y, predictions)
+        print("\nCoef: {0:9.3f}/1 ({0})".format(coef))
+
+        # Show graphs
+        for i in range(0, self.n_features):
+            plt.scatter(x[:, i], y)
+            plt.scatter(x[:, i], predictions, c='r')
+            plt.show()
 
         #  Show cost evolution
         plt.plot(range(self.n_iteration), cost_history)
         plt.show()
-
-        # Show coef /1
-        coef = self.coef_determination(y, predictions)
-        print("\nCoef: {0:9.3f}/1 ({0})".format(coef))
 
     def model(self, X, theta):
         return X.dot(theta)
