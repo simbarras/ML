@@ -1,4 +1,3 @@
-# Import
 import numpy as np  # Matrix
 from sklearn.datasets import make_regression  # Random dataset
 import matplotlib.pyplot as plt  # Graphic
@@ -19,24 +18,29 @@ class Lr:
     # dataset
     x = None
     y = None
+    X = None
     n_features = 1
+    theta = None
+
+    # result
+    theta_final = None
+    coef = 0
 
     def run(self, name=""):  # return the coef and the final theta
         self.y = self.y.reshape(self.y.shape[0], 1)
 
-        X = self.make_X(self.n_features + self.n_param_more)  # X -> arguments input [[a, 1],[b, 1]...]
+        self.X = self.make_X(self.n_features + self.n_param_more)  # X -> arguments input [[a, 1],[b, 1]...]
 
         if not self.use_normal_vector:
 
-            theta = np.random.randn(X.shape[1], 1)  # Matrix with the arguments of the function
+            self.theta = np.random.randn(self.X.shape[1], 1)  # Matrix with the arguments of the function
 
             # Learn
-            theta_final, cost_history = self.gradient_descent(X, self.y, theta, self.learning_rate, self.n_iteration)
+            self.theta_final, cost_history = self.gradient_descent()
         else:
-            theta_final = self.normal_vector(self.X, self.y)
+            self.theta_final = self.normal_vector()
 
-        predictions = self.model(X, theta_final)  # Make predictions
-        coef = self.coef_determination(self.y, predictions)  # Compute the coef / 1
+        self.coef = self.coef_determination()  # Compute the coef / 1
 
         if self.verbose:
             print("\nStats: Linear regression ({})".format(name))  # Show Stats
@@ -49,16 +53,14 @@ class Lr:
                 print("Learning rate: " + str(self.learning_rate))
             print("y: " + str(self.y.shape))
             print("x: " + str(self.x.shape))
-            print("Theta: " + str(theta_final.shape))
-            print("Theta final: " + str(theta_final))
-
-            # Show coef
-            print("Coef: {0:9.3f}/1 ({0})".format(coef))
+            print("Theta: " + str(self.theta_final.shape))
+            print("Theta final: " + str(self.theta_final))
+            print("Coef: {0:9.3f}/1 ({0})".format(self.coef))
 
             # Show graphs
             for i in range(0, self.n_features):
                 plt.scatter(self.x[:, i], self.y)
-                plt.scatter(self.x[:, i], predictions, c='r')
+                plt.scatter(self.x[:, i], self.model(self.X), c='r')
                 plt.show()
 
             #  Show cost evolution
@@ -66,36 +68,37 @@ class Lr:
                 plt.plot(range(self.n_iteration), cost_history)
                 plt.show()
 
-        return theta_final, coef
+        return self.theta_final, self.coef
 
     """=================================================================================================================
     ¦¦¦ Machine Learning FUNCTION                                                                                    ¦¦¦
     ================================================================================================================="""
 
-    def model(self, X, theta):
-        return X.dot(theta)
+    def model(self, x):
+        return x.dot(self.theta)
 
-    def cost(self, X, y, theta):
-        m = len(y)
-        return 1 / (2 * m) * np.sum((self.model(X, theta) - y) ** 2)
+    def cost(self):
+        m = len(self.y)
+        return 1 / (2 * m) * np.sum((self.model(self.X) - self.y) ** 2)
 
-    def grad(self, X, y, theta):
-        m = len(y)
-        return 1 / m * X.T.dot(self.model(X, theta) - y)
+    def grad(self):
+        m = len(self.y)
+        return 1 / m * self.X.T.dot(self.model(self.X) - self.y)
 
-    def gradient_descent(self, X, y, theta, learning_rate, n_iteration):
-        cost_history = np.zeros(n_iteration)
-        for i in range(0, n_iteration):
-            theta = theta - learning_rate * self.grad(X, y, theta)
-            cost_history[i] = self.cost(X, y, theta)
-        return theta, cost_history
+    def gradient_descent(self):
+        cost_history = np.zeros(self.n_iteration)
+        for i in range(0, self.n_iteration):
+            self.theta = self.theta - self.learning_rate * self.grad()
+            cost_history[i] = self.cost()
+        return self.theta, cost_history
 
-    def normal_vector(self, x, y):
-        return np.linalg.inv(x.T.dot(x)).dot((x.T.dot(y)))
+    def normal_vector(self):
+        return np.linalg.inv(self.X.T.dot(self.X)).dot((self.X.T.dot(self.y)))
 
-    def coef_determination(self, y, pred):
-        u = ((y - pred) ** 2).sum()
-        v = ((y - y.mean()) ** 2).sum()
+    def coef_determination(self):
+        pred = self.model(self.X)
+        u = ((self.y - pred) ** 2).sum()
+        v = ((self.y - self.y.mean()) ** 2).sum()
         return 1 - u / v
 
     """=================================================================================================================
