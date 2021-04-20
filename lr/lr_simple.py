@@ -4,7 +4,9 @@ from sklearn.datasets import make_regression  # Random dataset
 import matplotlib.pyplot as plt  # Graphic
 
 
+# https://github.com/MachineLearnia/Regression-lineaire-numpy/blob/master/R%C3%A9gression%20Lin%C3%A9aire%20Numpy.ipynb
 class LrSimple:
+    # Hyper parameter
     learning_rate = 0.01
     n_iteration = 1000
 
@@ -14,7 +16,7 @@ class LrSimple:
 
         X = np.hstack((x, np.ones(x.shape)))  # X -> arguments input [[a, 1],[b, 1]...]
 
-        theta = np.random.randn(2, 1)  # Matrix with the best arguments
+        theta = np.random.randn(2, 1)  # Matrix with the arguments of the function
 
         # Learn
         theta_final, cost_history = self.gradient_descent(X, y, theta, self.learning_rate, self.n_iteration)
