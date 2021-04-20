@@ -4,9 +4,9 @@ from sklearn.datasets import make_regression  # Random dataset
 import matplotlib.pyplot as plt  # Graphic
 
 
-# Regression linear simple
-# https://github.com/MachineLearnia/Regression-lineaire-numpy/blob/master/R%C3%A9gression%20Lin%C3%A9aire%20Numpy.ipynb
-class LrSimple:
+# Linear regression multiple
+# https://github.com/MachineLearnia/Regression-lineaire-numpy/blob/master/R%C3%A9gression%20Lin%C3%A9aire%20Multiple.ipynb
+class LrMultiple:
     # Hyper parameter
     learning_rate = 0.1
     n_iteration = 100
@@ -31,7 +31,7 @@ class LrSimple:
 
         predictions = self.model(X, theta_final)
 
-        print("Stats: Linear regression simple")  # Show Stats
+        print("Stats: Linear regression multiple")  # Show Stats
         print("Iteration: " + str(self.n_iteration))
         print("Learning rate: " + str(self.learning_rate))
         print("Features: " + str(self.n_features))
