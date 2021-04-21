@@ -4,12 +4,17 @@
  
  His Youtube channel: https://www.youtube.com/channel/UCmpptkXu8iIFe6kfDK5o7VQ
 
-# Now
+# OK <img src="https://cliply.co/wp-content/uploads/2021/03/372103860_CHECK_MARK_400px.gif" data-canonical-src="https://cliply.co/wp-content/uploads/2021/03/372103860_CHECK_MARK_400px.gif" width="30" height="30" />
  - simple linear regression :white_check_mark:
  - multiple linear regression :white_check_mark:
  - class for all linear regression :white_check_mark:
-# To Do
+ - 
+# Loading <img src="https://lh3.googleusercontent.com/proxy/DSdboYF1wC1OqH2ybfYu3V6Z1deSLi8MAcPNfU2b4ESy6OnptQ_0aEfIzwvKogFS7xLoFb23irccl49PsnfLUcuHjrmzGmcLDGOGJrR6Lm2KYczfCzk3h6orrp4NCXSQIDFt76zgoF-FE6XKLj_GYGETWFiz5NFtQvTOG8nq" data-canonical-src="https://lh3.googleusercontent.com/proxy/DSdboYF1wC1OqH2ybfYu3V6Z1deSLi8MAcPNfU2b4ESy6OnptQ_0aEfIzwvKogFS7xLoFb23irccl49PsnfLUcuHjrmzGmcLDGOGJrR6Lm2KYczfCzk3h6orrp4NCXSQIDFt76zgoF-FE6XKLj_GYGETWFiz5NFtQvTOG8nq" width="20" height="20" />
+ - ...
+ - 
+# To Do <img src="https://media0.giphy.com/media/Pm3FNhFWrtu5BItOVo/giphy.gif" data-canonical-src="https://media0.giphy.com/media/Pm3FNhFWrtu5BItOVo/giphy.gif" width="30" height="30" />
  - K-nearest :soon:
+ - 
 
 ### Emoji
 :warning:
