@@ -42,7 +42,8 @@ class Lr:
             # Learn
             self.theta_final, cost_history = self.gradient_descent()
         else:
-            self.theta_final = self.normal_vector()
+            self.theta = self.normal_vector()
+            self.theta_final = self.theta
 
         self.coef = self.coef_determination()  # Compute the coef / 1
 
@@ -57,6 +58,7 @@ class Lr:
                 print("Learning rate: " + str(self.learning_rate))
             print("y: " + str(self.y.shape))
             print("x: " + str(self.x.shape))
+            print("X: " + str(self.X.shape))
             print("Theta: " + str(self.theta_final.shape))
             print("Theta final: " + str(self.theta_final))
             print("Coef: {0:9.3f}/1 ({0})".format(self.coef))
