@@ -14,6 +14,7 @@ class Lr:
     n_param_more = 0
     use_normal_vector = False
     verbose = False
+    name = ""
 
     # dataset
     x = None
@@ -27,6 +28,9 @@ class Lr:
     coef = 0
 
     def run(self, name=""):  # return the coef and the final theta
+        if name == "":
+            name = self.name
+
         self.y = self.y.reshape(self.y.shape[0], 1)
 
         self.X = self.make_X(self.n_features + self.n_param_more)  # X -> arguments input [[a, 1],[b, 1]...]
@@ -86,10 +90,13 @@ class Lr:
         return 1 / m * self.X.T.dot(self.model(self.X) - self.y)
 
     def gradient_descent(self):
-        cost_history = np.zeros(self.n_iteration)
+        if self.verbose:
+            cost_history = np.zeros(self.n_iteration)
+
         for i in range(0, self.n_iteration):
             self.theta = self.theta - self.learning_rate * self.grad()
-            cost_history[i] = self.cost()
+            if self.verbose:
+                cost_history[i] = self.cost()
         return self.theta, cost_history
 
     def normal_vector(self):
