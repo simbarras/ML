@@ -12,7 +12,7 @@
 # Loading <img src="https://lh3.googleusercontent.com/proxy/DSdboYF1wC1OqH2ybfYu3V6Z1deSLi8MAcPNfU2b4ESy6OnptQ_0aEfIzwvKogFS7xLoFb23irccl49PsnfLUcuHjrmzGmcLDGOGJrR6Lm2KYczfCzk3h6orrp4NCXSQIDFt76zgoF-FE6XKLj_GYGETWFiz5NFtQvTOG8nq" data-canonical-src="https://lh3.googleusercontent.com/proxy/DSdboYF1wC1OqH2ybfYu3V6Z1deSLi8MAcPNfU2b4ESy6OnptQ_0aEfIzwvKogFS7xLoFb23irccl49PsnfLUcuHjrmzGmcLDGOGJrR6Lm2KYczfCzk3h6orrp4NCXSQIDFt76zgoF-FE6XKLj_GYGETWFiz5NFtQvTOG8nq" width="20" height="20" />
  - ...
  - 
-# To Do <img src="https://i.gifer.com/YkAw.gif" data-canonical-src="https://i.gifer.com/YkAw.gif" width="30" height="30" />
+# To Do <img src="https://media0.giphy.com/media/XCsLl3tCsxAYp7j5oF/giphy.gif" data-canonical-src="https://media0.giphy.com/media/XCsLl3tCsxAYp7j5oF/giphy.gif" width="40" height="40" />
  - K-nearest :soon:
  - 
 
