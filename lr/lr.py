@@ -37,7 +37,8 @@ class Lr:
 
         if not self.use_normal_vector:
 
-            self.theta = np.random.randn(self.X.shape[1], 1)  # Matrix with the arguments of the function
+            if self.theta is None:
+                self.theta = np.random.randn(self.X.shape[1], 1)  # Matrix with the arguments of the function
 
             # Learn
             self.theta_final, cost_history = self.gradient_descent()

@@ -25,5 +25,5 @@ if __name__ == '__main__':
 
     lr.run("Grad")  # Run the regression
 
-    lr.use_normal_vector = True
-    lr.run("Normal")  # Run the regression
+    lr.theta = np.array([[250], [-220], [5000]])
+    lr.run("Force theta")  # Run the regression
