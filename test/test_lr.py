@@ -1,4 +1,4 @@
-from lr import Lr as regressor
+import Lr as regressor
 
 def test_random():
     lr = regressor()
