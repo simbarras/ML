@@ -1,7 +1,7 @@
-import lr.lr as regressor
+from ML.lr.lr import Lr as regressor
 
 def test_random():
-    lr = Lr()
+    lr = regressor()
 
     lr.learning_rate = 0.0001
     lr.n_iteration = 1000
